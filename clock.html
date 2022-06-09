@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Inter:wght@200&family=Kdam+Thmor+Pro&family=Open+Sans:wght@300&family=Readex+Pro:wght@200&family=Ropa+Sans&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background: black;
+        }
+        .content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(#12c2e9,#c471ed,#f64f59);
+            position: absolute;
+            background-clip: text;
+            margin: 3rem 0 0 28rem;
+            
+        }
+        p{
+            display: inline-block;
+            color: transparent;
+            font-size: 100px;
+            font-family: 'Inter', sans-serif;;
+        }
+        #imag{
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+            align-items: center;
+        }
+         #imag img{
+            width: 100%;
+        } 
+        #cover{
+            height: 112px;
+            width: 468px;
+            position: absolute;
+            margin: 10rem 0 0 27rem;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="cover"></div> <div id="cover"></div>     
+        <div class="content">
+        <p id="hour"></p>
+        <p id="minute"></p>
+        <p id="second"></p>
+         </div>
+        <div id="imag">
+            <img src="../html/images/Group 1.png" alt="">
+        </div>
+
+    <script>
+        let second=1000;
+        let s=50;
+        let m=59;
+        let h=11;
+        let day_section = 0;
+        let s_s="AM";
+        setInterval(() => {
+            if(s > 59){
+                s=0;
+                m++;
+            }
+            if(m > 59){
+                m=0;
+                h++;
+            }
+            if(day_section == 0){
+                if(h==12){
+                    s_s="PM";
+                }
+                if(h > 12){
+                    h=1;
+                    day_section=1;
+                }
+            }
+            if(day_section==1){
+                if(h==12){
+                    s_s="AM";
+                    h=0;
+                    day_section=0;
+                }
+            }
+            
+        }, second);
+
+        
+
+        setInterval(() => {
+            if(s <= 59){
+                s++;
+
+            }
+        },second);
+
+        setInterval(() => {
+            document.getElementById("hour").innerHTML = h  + ":";
+            document.getElementById("minute").innerHTML=m + ":";
+            document.getElementById("second").innerHTML=s + " " + s_s;
+        }, second);
+    </script>
+</body>
+</html>
